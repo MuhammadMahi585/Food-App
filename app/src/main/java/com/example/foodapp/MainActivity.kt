@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
                  .fillMaxSize()
                ) {
                  TopAppBar(
-                     title ={Text(text = "Food App",
+                     title ={Text(text = "Food Dino",
                          style= MaterialTheme.typography.headlineMedium,
                           fontWeight = FontWeight.SemiBold,
                           color = colorResource(id = R.color.textcolor)
