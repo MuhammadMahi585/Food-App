@@ -4,7 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,6 +26,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
@@ -65,10 +75,11 @@ fun ShowFoodList(foodList: List<Foods>){
 }
 @Composable
 fun FoodCard(foods: Foods, modifier: Modifier){
+    var isExpaned by remember { mutableStateOf(false) }
     Surface(
         shape = RoundedCornerShape(8.dp),
         shadowElevation = 8.dp,
-        modifier = modifier
+        modifier = modifier.clickable { isExpaned=!isExpaned }
     ) {
         Column(
             modifier = Modifier.fillMaxWidth()
@@ -81,11 +92,18 @@ fun FoodCard(foods: Foods, modifier: Modifier){
             Column(modifier = Modifier.padding(16.dp)) {
                 Text(text = foods.tittle, style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.padding(bottom = 4.dp))
-                Text(text = foods.description, style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.padding(bottom = 4.dp))
-            }
-
+                    AnimatedVisibility(
+                        visible = isExpaned,
+                        enter = fadeIn() + expandVertically(),
+                        exit = fadeOut() + shrinkVertically()
+                    ) {
+                        Column {
+                            Text(text = foods.description, style = MaterialTheme.typography.bodyMedium,
+                                modifier = Modifier.padding(bottom = 4.dp))
+                        }
+                    }
+               }
         }
+}
+}
 
-}
-}
