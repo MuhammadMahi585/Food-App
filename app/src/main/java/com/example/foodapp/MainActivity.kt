@@ -10,12 +10,15 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,17 +29,23 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.foodapp.ui.theme.FoodAppTheme
+import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -45,26 +54,42 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FoodAppTheme {
-             Column(modifier = Modifier
-                 .fillMaxSize()
-               ) {
-                 TopAppBar(
-                     title ={Text(text = "Food Dino",
-                         style= MaterialTheme.typography.headlineMedium,
-                          fontWeight = FontWeight.SemiBold,
-                          color = colorResource(id = R.color.textcolor)
-                         )
-                 },
-                     colors = TopAppBarDefaults.topAppBarColors(
-                     colorResource(id = R.color.background)
-                     )
-                 )
-                 ShowFoodList(foodList = foodList)
-             }
+                var showFrontPage by remember {
+                    mutableStateOf(true)
+                }
+                LaunchedEffect(Unit) {
+                    delay(2000)
+                    showFrontPage= false
+                }
+                if(showFrontPage){
+                FrontPages()
+                }
+                else {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                    ) {
+                        TopAppBar(
+                            title = {
+                                Text(
+                                    text = "Food Dino",
+                                    style = MaterialTheme.typography.headlineMedium,
+                                    fontWeight = FontWeight.SemiBold,
+                                    color = colorResource(id = R.color.textcolor)
+                                )
+                            },
+                            colors = TopAppBarDefaults.topAppBarColors(
+                                colorResource(id = R.color.background)
+                            )
+                        )
+                        ShowFoodList(foodList = foodList)
+                    }
+                }
                 }
             }
         }
     }
+
 @Composable
 fun ShowFoodList(foodList: List<Foods>){
     LazyColumn {
@@ -73,13 +98,14 @@ fun ShowFoodList(foodList: List<Foods>){
         }
     }
 }
+
 @Composable
 fun FoodCard(foods: Foods, modifier: Modifier){
     var isExpaned by remember { mutableStateOf(false) }
     Surface(
         shape = RoundedCornerShape(8.dp),
         shadowElevation = 8.dp,
-        modifier = modifier.clickable { isExpaned=!isExpaned }
+        modifier = modifier.clickable { isExpaned= !isExpaned }
     ) {
         Column(
             modifier = Modifier.fillMaxWidth()
@@ -102,8 +128,41 @@ fun FoodCard(foods: Foods, modifier: Modifier){
                                 modifier = Modifier.padding(bottom = 4.dp))
                         }
                     }
-               }
+                }
         }
 }
 }
 
+@Composable
+fun FrontPages(){
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = colorResource(id = R.color.background)),
+        contentAlignment = Alignment.Center,
+    ) {
+        Column(
+            modifier = Modifier.padding(4.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.ai_generated_7925730_1280_removebg_preview),
+                contentDescription = "Icon Image",
+                modifier = Modifier.size(300.dp)
+            )
+            Text(
+                text = stringResource(R.string.food_dino),
+                style = MaterialTheme.typography.headlineLarge,
+                fontSize = 44.sp,
+                color = colorResource(id = R.color.white)
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+fun DisplayApp(){
+    FrontPages()
+}
