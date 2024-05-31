@@ -1,9 +1,12 @@
 package com.example.foodapp
 
 import android.os.Bundle
+import android.view.Surface
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
@@ -21,11 +24,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -41,6 +48,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -57,8 +65,14 @@ class MainActivity : ComponentActivity() {
                 var showFrontPage by remember {
                     mutableStateOf(true)
                 }
+                var foodSearched by remember {
+                    mutableStateOf("")
+                }
+                var FilteredList= foodList.filter {
+                    it.tittle.contains(foodSearched,ignoreCase = true)
+                }
                 LaunchedEffect(Unit) {
-                    delay(2000)
+                    delay(1000)
                     showFrontPage= false
                 }
                 if(showFrontPage){
@@ -70,19 +84,37 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                     ) {
                         TopAppBar(
-                            title = {
-                                Text(
-                                    text = "Food Dino",
-                                    style = MaterialTheme.typography.headlineMedium,
-                                    fontWeight = FontWeight.SemiBold,
-                                    color = colorResource(id = R.color.textcolor)
-                                )
-                            },
-                            colors = TopAppBarDefaults.topAppBarColors(
-                                colorResource(id = R.color.background)
-                            )
+                                title = {
+                                    Text(
+                                        text = "Food Dino",
+                                        style = MaterialTheme.typography.headlineMedium,
+                                        fontWeight = FontWeight.SemiBold,
+                                        color = colorResource(id = R.color.textcolor)
+                                    )
+                                },
+                                colors = TopAppBarDefaults.topAppBarColors(
+                                    colorResource(id = R.color.background)
+                                ),
                         )
-                        ShowFoodList(foodList = foodList)
+                        Surface(
+                            color = colorResource(id = R.color.background),
+                        ){
+                            SearchFood(
+                                foodSearch = foodSearched,
+                                onValueChange = {foodSearched= it},
+                                label = R.string.search_for_food,
+                                leadingIcon = R.drawable.baseline_search_24,
+                                modifier = Modifier
+                                    .padding(top = 4.dp, bottom = 16.dp, start = 12.dp, end = 12.dp)
+                                    .fillMaxWidth(),
+                                foodList = foodList
+                            )
+                        }
+                        if(foodSearched==""){
+                        ShowFoodList(foodList = foodList)}
+                        else{
+                            ShowFoodList(foodList = FilteredList)
+                        }
                     }
                 }
                 }
@@ -160,7 +192,26 @@ fun FrontPages(){
         }
     }
 }
-
+@Composable
+fun SearchFood(
+    foodSearch: String,
+    onValueChange: (String)->Unit,
+    @StringRes label :Int,
+    @DrawableRes leadingIcon : Int,
+    modifier: Modifier,
+    foodList: List<Foods>){
+    TextField(
+        leadingIcon = {Icon(painter = painterResource(id = leadingIcon),null)},
+        value = foodSearch,
+        onValueChange = onValueChange,
+        label = {Text(stringResource(id = label))},
+        shape = CircleShape,
+        keyboardOptions = KeyboardOptions.Default.copy(
+            imeAction = ImeAction.Search,
+        ),
+        modifier = modifier
+    )
+}
 @Preview
 @Composable
 fun DisplayApp(){

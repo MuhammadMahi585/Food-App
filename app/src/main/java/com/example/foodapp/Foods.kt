@@ -7,7 +7,7 @@ data class Foods(
     val tittle : String,
     val description: String
 )
-val foodList = listOf(
+var foodList = listOf(
     Foods(R.drawable.burger,"Veg Burger","Burger starting from Rs 80"),
     Foods(R.drawable.fries,"French Fries","Get fries at just 100"),
     Foods(R.drawable.pulao,"Karachi Pulao","Only in Rs 500 per plate"),
