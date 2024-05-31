@@ -1,7 +1,6 @@
 package com.example.foodapp
 
 import android.os.Bundle
-import android.view.Surface
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -68,7 +67,7 @@ class MainActivity : ComponentActivity() {
                 var foodSearched by remember {
                     mutableStateOf("")
                 }
-                var FilteredList= foodList.filter {
+                val filteredList= foodList.filter {
                     it.tittle.contains(foodSearched,ignoreCase = true)
                 }
                 LaunchedEffect(Unit) {
@@ -106,14 +105,13 @@ class MainActivity : ComponentActivity() {
                                 leadingIcon = R.drawable.baseline_search_24,
                                 modifier = Modifier
                                     .padding(top = 4.dp, bottom = 16.dp, start = 12.dp, end = 12.dp)
-                                    .fillMaxWidth(),
-                                foodList = foodList
+                                    .fillMaxWidth()
                             )
                         }
                         if(foodSearched==""){
                         ShowFoodList(foodList = foodList)}
                         else{
-                            ShowFoodList(foodList = FilteredList)
+                            ShowFoodList(foodList = filteredList)
                         }
                     }
                 }
@@ -199,7 +197,7 @@ fun SearchFood(
     @StringRes label :Int,
     @DrawableRes leadingIcon : Int,
     modifier: Modifier,
-    foodList: List<Foods>){
+){
     TextField(
         leadingIcon = {Icon(painter = painterResource(id = leadingIcon),null)},
         value = foodSearch,
