@@ -2,4 +2,7 @@
     <string name="app_name">Food App</string>
     <string name="food_dino">Food Dino</string>
     <string name="search_for_food">Search For Food</string>
+    <string name="search_for_foods">Search For food</string>
+    <string name="title_activity_cart">CartActivity</string>
+    <string name="title_activity_cart2">CartActivity2</string>
 </resources>
