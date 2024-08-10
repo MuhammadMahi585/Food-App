@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_height">35.dp</dimen>
+    <dimen name="font_size_tittle">24.dp</dimen>
+    <dimen name="font_size_summary">16.dp</dimen>
+    <dimen name="small_padding">4.dp</dimen>
+    <dimen name="medium_padding">8.dp</dimen>
+    <dimen name="large_padding">16.dp</dimen>
+    <dimen name="image_szie">200.dp</dimen>
+    <dimen name="heading_font_size">32.sp</dimen>
+</resources>

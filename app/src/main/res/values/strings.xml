@@ -1,8 +1,18 @@
 <resources>
-    <string name="app_name">Food App</string>
+    <string name="app_name">Food Dino</string>
     <string name="food_dino">Food Dino</string>
     <string name="search_for_food">Search For Food</string>
     <string name="search_for_foods">Search For food</string>
     <string name="title_activity_cart">CartActivity</string>
     <string name="title_activity_cart2">CartActivity2</string>
+    <string name="email">Email</string>
+    <string name="email_icon">Email Icon</string>
+    <string name="password">Password</string>
+    <string name="password_icon">password Icon</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="name">Name</string>
+    <string name="namesign">Name</string>
+    <string name="name_icon">Name icon</string>
+    <string name="phone">Phone</string>
 </resources>
