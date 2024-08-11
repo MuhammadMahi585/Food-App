@@ -15,4 +15,5 @@
     <string name="namesign">Name</string>
     <string name="name_icon">Name icon</string>
     <string name="phone">Phone</string>
+    <string name="visibilty_icon">visibilty icon</string>
 </resources>

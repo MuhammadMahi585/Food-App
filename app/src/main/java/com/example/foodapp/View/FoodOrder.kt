@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,26 +20,33 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.foodapp.R
+import com.example.foodapp.ViewModel.FoodViewModel
 import com.example.foodapp.data.Foods
-import com.example.foodapp.data.foodOrder
+import com.example.foodapp.ui.theme.FoodAppTheme
 
 @Composable
-fun ViewFoods(){
+fun ViewFoods(viewModel: FoodViewModel){
+    val foodOrder by viewModel.foodOrder.collectAsState()
     Scaffold(
-        modifier = Modifier.safeDrawingPadding()
+        modifier = Modifier
             .safeContentPadding()
+
     ){
         Box(modifier = Modifier.fillMaxSize()) {
             Column {
@@ -48,20 +54,27 @@ fun ViewFoods(){
                 LazyColumn(contentPadding = it) {
                     items(foodOrder) { foods ->
                         ViewList(
-                            food = foods
+                            food = foods,
+                            viewModel=viewModel
                         )
                     }
                 }
             }
-            ButtonsDisplay(modifier = Modifier
-                .align(Alignment.BottomCenter))
-
+            Column(
+                modifier = Modifier
+                    .align(alignment = Alignment.BottomCenter)
+                   // .padding(dimensionResource(id = R.dimen.medium_padding))
+            ) {
+           DisplayTotal(viewModel = viewModel)
+            ButtonsDisplay()
+            }
         }
     }
 }
 @Composable
 fun ViewList(
-    food: Foods
+    food: Foods,
+    viewModel: FoodViewModel
 ){
     Card(
         modifier = Modifier
@@ -92,8 +105,7 @@ fun ViewList(
                 contentAlignment = Alignment.CenterEnd
             ){
                 IconButton(onClick = {
-                    foodOrder.remove(food)
-
+                    viewModel.removeFoodFromOrder(food)
                 }) {
                     Icon(
                         painter = painterResource(id = R.drawable.baseline_close_24),
@@ -123,14 +135,11 @@ fun FoodTopAppBar(){
     )
 }
 @Composable
-fun ButtonsDisplay(
-    modifier: Modifier
-){
-    Row (
-        modifier= modifier
+fun ButtonsDisplay( ){
+    Row {
+        OutlinedButton(onClick = {
 
-    ){
-        OutlinedButton(onClick = { /*TODO*/ },
+        },
             colors = ButtonDefaults.buttonColors(
                 containerColor = colorResource(id = R.color.background)
             ),
@@ -155,8 +164,29 @@ fun ButtonsDisplay(
 
             Text(text = "Confirm",
                 style = MaterialTheme.typography.titleMedium,
-
                 )
         }
+    }
+}
+@Composable
+fun DisplayTotal(viewModel: FoodViewModel){
+         val uiState by viewModel.uiState.collectAsState()
+    println("Current Total Price: ${uiState.totalPrice}")
+        Surface{
+            Text(
+                text = "Total Amount: $${uiState.totalPrice}",
+                style = MaterialTheme.typography.displaySmall,
+                color = colorResource(id = R.color.textcolor),
+                modifier = Modifier,
+                maxLines = 1
+            )
+        }
+    }
+
+@Preview
+@Composable
+fun View(){
+    FoodAppTheme {
+     //   ViewFoods()
     }
 }
