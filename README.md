@@ -25,25 +25,28 @@ Foodino is a modern food ordering app designed using **Jetpack Compose**, focuse
 
 ### Authentication
 
+#### Logi Screen
+![Logo Screen](./assets/logo.jpg)
+
 #### Login Screen
-![Login Screen](./assets/login_screen.png)
+![Login Screen](./assets/login.jpg)
 
 #### Sign-Up Screen
-![SignUp Screen](./assets/signup_screen.png)
+![SignUp Screen](./assets/signup.jpg)
 
 ### Main App
 
 #### View Food Items
-![Food Items Screen](./assets/food_items.png)
+![Food Items Screen](./assets/viewFood.jpg)
 
 #### Search Foods
-![Search Foods Screen](./assets/search_foods.png)
+![Search Foods Screen](./assets/search.jpg)
 
 #### Cart
-![Cart Screen](./assets/cart.png)
+![Cart Screen](./assets/cart.jpg)
 
-#### Profile & Settings
-![Profile Screen](./assets/profile.png)
+#### Options
+![Profile Screen](./assets/options.jpg)
 
 ---
 
