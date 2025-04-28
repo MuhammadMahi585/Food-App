@@ -34,12 +34,12 @@
 #Modern Design: Built entirely with Jetpack Compose for a clean, dynamic UI experience.
 
 # Tech Stack
-#UI Framework: Jetpack Compose (Android)
-#State Management: ViewModel + Compose State APIs
-#Navigation: Jetpack Navigation Compose
-#Authentication: In development
-#Backend: (Coming soon)
-#Database: (Planned: Firebas)
+# UI Framework: Jetpack Compose (Android)
+# State Management: ViewModel + Compose State APIs
+# Navigation: Jetpack Navigation Compose
+# Authentication: In development
+# Backend: (Coming soon)
+# Database: (Planned: Firebas)
 
 # Getting Started
 #Prerequisites
