@@ -50,6 +50,7 @@ Android SDK
 # Installation
 Clone the repository
 git clone https://github.com/YourUsername/Food-App.git
+
 cd Foodino
 Open the project in Android Studio and sync Gradle files.
 Run the app on your Android Emulator or a physical device.
