@@ -1,29 +1,25 @@
-### Foodino - Kotlin Jetpack Compose App
-## Welcome to the Foodino Android application repository!
+## Foodino - Kotlin Jetpack Compose App
+# Welcome to the Foodino Android application repository!
 # Foodino is a modern food ordering app designed using Jetpack Compose, focused on a smooth user experience and clean UI.
 
 🚀 Currently, the app's backend is under development — but major UI functionalities are complete!
 
 ## Table of Contents
-# 1.Demo
-
-# 2.Features
-
-# 3.Tech Stack
-
-# 4.Getting Started
-
-# 5.Upcoming Improvements
+1.Demo
+2.Features
+3.Tech Stack
+4.Getting Started
+5.Upcoming Improvements
 
 ## Demo
-## Authentication
-# Login Screen
-# Sign Up Screen
-# Main App Screens
-# View Foods
-# Search Foods
-# Cart
-# Profile & Settings
+1. Authentication
+2. Login Screen
+3. Sign Up Screen
+4. Main App Screens
+5. View Foods
+6. Search Foods
+7. Cart
+8. Profile & Settings
 
 ## Features
 ## Functional Features
