@@ -23,29 +23,29 @@
 
 # Features
 # Functional Features
-User Authentication: Login & Sign Up flows.
-View Food Items: Explore a variety of delicious foods.
-Search Foods: Find your favorite food by name.
-Cart Management: Add food items to the cart for quick checkout.
-User Profile: Manage your settings and profile information.
+1.User Authentication: Login & Sign Up flows.
+2. View Food Items: Explore a variety of delicious foods.
+3. Search Foods: Find your favorite food by name.
+4. Cart Management: Add food items to the cart for quick checkout.
+5. User Profile: Manage your settings and profile information.
 
 # Additional Features
-Responsive UI: Smooth, adaptive layouts across different Android devices.
-Modern Design: Built entirely with Jetpack Compose for a clean, dynamic UI experience.
+#Responsive UI: Smooth, adaptive layouts across different Android devices.
+#Modern Design: Built entirely with Jetpack Compose for a clean, dynamic UI experience.
 
 # Tech Stack
-UI Framework: Jetpack Compose (Android)
-State Management: ViewModel + Compose State APIs
-Navigation: Jetpack Navigation Compose
-Authentication: In development
-Backend: (Coming soon)
-Database: (Planned: Firebas)
+#UI Framework: Jetpack Compose (Android)
+#State Management: ViewModel + Compose State APIs
+#Navigation: Jetpack Navigation Compose
+#Authentication: In development
+#Backend: (Coming soon)
+#Database: (Planned: Firebas)
 
 # Getting Started
-Prerequisites
-Android Studio
-Kotlin 1.9+
-Android SDK
+#Prerequisites
+#Android Studio
+#Kotlin 1.9+
+#Android SDK
 
 # Installation
 Clone the repository
@@ -56,8 +56,8 @@ cd Foodino
 #Run the app on your Android Emulator or a physical device.
 
 # Upcoming Improvements
-Backend API integration (user auth, cart persistence, food listing)
-Payment Gateway Integration
-Order Tracking and Notifications
-Favorites and Wishlist feature
-Admin Panel for food management 
+#Backend API integration (user auth, cart persistence, food listing)
+#Payment Gateway Integration
+#Order Tracking and Notifications
+#Favorites and Wishlist feature
+#Admin Panel for food management 
