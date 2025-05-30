@@ -10,6 +10,8 @@ Foodino is a modern food ordering app designed using **Jetpack Compose**, focuse
 - 🎨 Built entirely with Jetpack Compose for a modern UI
 
 ---
+## Download App From this link
+https://github.com/MuhammadMahi585/Food-App/releases/download/v1.0.0/app-debug.apk
 
 ## Table of Contents
 
